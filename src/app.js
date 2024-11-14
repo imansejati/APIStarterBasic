@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const apiRoutes = require('./routes/api.routes');
 const errorHandler = require('./middleware/errorHandler.middleware');
-require("dotenv").config();
+
 
 const app = express();
 
@@ -19,9 +20,7 @@ app.use('/api', apiRoutes);
 // Error Handling
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_DOCKER_PORT || 3000;
 app.listen(PORT, () => {
-    console.log('horee');
-    console.log(process.env.PORT);
     console.log(`API Server berjalan di http://localhost:${PORT}`);
 });
