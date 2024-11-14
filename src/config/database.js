@@ -3,17 +3,16 @@ require('dotenv').config();
 // const mysql = require('mysql2');
 
 
-// Create a MySQL connection
+// // Create a MySQL connection
 // const db = mysql.createConnection({
-//     host: 'localhost', // Change as needed
-//     port: '3307', // Change as needed
-//     // host: 'mysql', // Change as needed
-//     user: 'root', // Change as needed
-//     password: '123456', // Change as needed
-//     database: 'dbLatihan'
+//     host: process.env.DB_HOST,
+//     port: process.env.DB_HOST_PORT,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME
 // });
 
-// Connect to the database
+// // Connect to the database
 // db.connect((err) => {
 //     if (err) {
 //         console.error('Error connecting to the database:', err);
@@ -22,13 +21,12 @@ require('dotenv').config();
 //     }
 // });
 
-console.log(process.env.MYSQLDB_HOST);
 const pool = mysql.createPool({
-    host: process.env.MYSQLDB_HOST,
-    // port: process.env.MYSQLDB_LOCAL_PORT,
-    user: process.env.MYSQLDB_USER,
-    password: process.env.MYSQLDB_ROOT_PASSWORD,
-    database: process.env.MYSQLDB_DATABASE,
+    host: process.env.DB_HOST,
+    port: process.env.DB_HOST_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0

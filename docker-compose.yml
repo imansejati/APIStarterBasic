@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - $NODE_HOST_PORT:$NODE_DOCKER_PORT
       - "9229:9229" #debug port
     environment:
       - DB_HOST=$DB_HOST
