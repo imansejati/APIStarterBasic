@@ -1,11 +1,27 @@
-const http = require('http');
-const router = require('./routes/router');
+const express = require('express');
+const cors = require('cors');
+const apiRoutes = require('./routes/api.routes');
+const errorHandler = require('./middleware/errorHandler.middleware');
+require("dotenv").config();
 
-const server = http.createServer((req, res) => {
-    router.handleRequest(req, res);
-});
+const app = express();
 
-const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
+
+// API Routes
+app.use('/api', apiRoutes);
+
+// Error Handling
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log('horee');
+    console.log(process.env.PORT);
+    console.log(`API Server berjalan di http://localhost:${PORT}`);
 });

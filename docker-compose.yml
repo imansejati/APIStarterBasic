@@ -10,10 +10,10 @@ services:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
       - "9229:9229" #debug port
     environment:
-      - DB_HOST=mysql
-      - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
       - DB_PORT=$MYSQLDB_DOCKER_PORT
     volumes:
       - ./src:/src #read only
