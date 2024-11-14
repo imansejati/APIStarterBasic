@@ -4,21 +4,22 @@ services:
     container_name: latihan
     build:
       context: .
-
     restart: unless-stopped
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
       - "9229:9229" #debug port
     environment:
-      - DB_HOST=mysqldb
-      - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$DB_HOST_PORT
+
     volumes:
       - ./src:/src #read only
       - /src/node_modules #avoid write node_modules
+
     stdin_open: true #keep open the terminal after building container
     tty: true #keep open the terminal after building container
     command: npm run dev
